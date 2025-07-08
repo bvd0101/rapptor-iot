@@ -1,2 +1,2 @@
-# rapptor-iot v1.0
+# Rapptor-iot v1.0
 By Vandiep
