@@ -13,15 +13,15 @@
 
 // --- PIN DEFINITIONS ---
 #define TFT_SCLK 14
-#define TFT_MOSI 13 // Còn gọi là SDI
-#define TFT_MISO 12 // Còn gọi là SDO
+#define TFT_MOSI 13
+#define TFT_MISO 12
 #define TFT_CS   15
-#define TFT_DC   2   // Còn gọi là RS
+#define TFT_DC   2
 #define TFT_RST  -1
-#define TFT_BL   21  // TFT_LED trên sơ đồ
+#define TFT_BL   21
 
 // --- AUDIO PIN ---
-#define AUDIO_OUT_PIN DAC_CHANNEL_2 // Chân IO26 tương ứng với DAC Channel 2
+#define AUDIO_OUT_PIN DAC_CHANNEL_2 
 
 // --- RGB LED PINS ---
 #define LED_RED_PIN    4
@@ -276,17 +276,17 @@ void manageLed() {
 
    
     if (rssi >= -55) {
-      setLedColor(255, 0, 0);   // Đỏ
+      setLedColor(255, 0, 0);
     } else if (rssi >= -65) {
-      setLedColor(255, 100, 0); // Cam
+      setLedColor(255, 100, 0);
     } else if (rssi >= -75) {
-      setLedColor(255, 255, 0); // Vàng
+      setLedColor(255, 255, 0);
     } else {
-      setLedColor(0, 255, 0);   // Xanh lá
+      setLedColor(0, 255, 0);
     }
 
   } else {
-    // Giữ màu xanh dương khi mất kết nối
+    //
     setLedColor(0, 0, 255); 
   }
 }
@@ -434,13 +434,11 @@ void checkButtonPress() {
 void setup() {
   Serial.begin(115200);
 
-  // Khởi tạo LED và Audio theo sơ đồ
   pinMode(LED_RED_PIN, OUTPUT);
   pinMode(LED_GREEN_PIN, OUTPUT);
   pinMode(LED_BLUE_PIN, OUTPUT);
   dac_output_enable(AUDIO_OUT_PIN); 
 
-  // Khởi tạo màn hình
   SPI.begin(TFT_SCLK, TFT_MISO, TFT_MOSI, -1);
   tft.init(240, 320);
   tft.setRotation(3);
@@ -452,14 +450,11 @@ void setup() {
   u8g2_for_adafruit_gfx.setFontMode(1);
   u8g2_for_adafruit_gfx.setFontDirection(0);
 
-  // Hiển thị chữ chào mừng
   tft.fillScreen(SCREEN_BG_COLOR);
   displayCenteredMessageU8g2("Rapptor IOT v1.2\nStarting...", ST77XX_WHITE, u8g2_font_unifont_t_vietnamese2);
 
-  // Phát nhạc và nháy LED khởi động
   playStartupSound();
 
-  // Tiếp tục chương trình chính
   pinMode(CONFIG_BUTTON_PIN, INPUT_PULLUP);
   tft.fillScreen(SCREEN_BG_COLOR);
   displayCenteredMessageU8g2("GIÁM SÁT RSSI ESP32", ST77XX_WHITE, u8g2_font_unifont_t_vietnamese2);
