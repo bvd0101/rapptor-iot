@@ -350,7 +350,7 @@ void handleRoot() {
   html += "<style>body{font-family:Arial,sans-serif;text-align:center;margin-top:20px;background-color:#f0f0f0}.main-container{display:flex;flex-direction:column;align-items:center;gap:20px}.card{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);text-align:left;width:90%;max-width:400px}h2{text-align:center;color:#333}input,select,button{width:100%;padding:10px;margin:8px 0;display:inline-block;border:1px solid #ccc;border-radius:4px;box-sizing:border-box}button,input[type=submit]{cursor:pointer;font-weight:bold;color:#fff;border:none}input[type=submit]{background-color:#4CAF50}input[type=submit]:hover{background-color:#45a049}.status-message{color:blue;font-weight:bold;margin-top:15px;text-align:center}.device-info{text-align:center;margin-top:20px;color:#555}</style>";
   html += "</head><body><div class='main-container'>";
   html += "<div class='card'><h2>Cấu hình Wi-Fi</h2><form id='wifiForm' action='/submit' method='post'><label for='ssid_select'>Chọn SSID:</label><select id='ssid_select'><option value=''>--Chọn mạng--</option>" + availableNetworks + "</select><label for='ssid_input'>Hoặc nhập SSID:</label><input type='text' id='ssid_input' name='ssid'><label for='password_input'>Mật khẩu:</label><input id='password_input' type='password' name='password'><input type='submit' value='Lưu & Kết nối'></form><div id='status' class='status-message'></div></div>";
-  html += "<div class='device-info'><p><strong>Tên:</strong> Rapptor | <strong>Phiên bản:</strong> v1.0 | <strong>Github:</strong> <a href='https://github.com/bvd0101/rapptor-iot' target='_blank'>Link</a></p></div>";
+  html += "<div class='device-info'><p><strong>Tên:</strong> Rapptor | <strong>Phiên bản:</strong> v1.2 | <strong>Github:</strong> <a href='https://github.com/bvd0101/rapptor-iot' target='_blank'>Link</a></p></div>";
   html += "</div><script>document.getElementById('wifiForm').addEventListener('submit',function(e){e.preventDefault();var t=new FormData(this);fetch(this.action,{method:'POST',body:new URLSearchParams(t)}).then(e=>e.text()).then(e=>{document.getElementById('status').innerHTML=e})}),document.getElementById('ssid_select').addEventListener('change',function(){this.value&&(document.getElementById('ssid_input').value=this.value)});</script></body></html>";
   server.send(200, "text/html; charset=UTF-8", html);
 }
@@ -456,7 +456,7 @@ void setup() {
 
   // Hiển thị chữ chào mừng
   tft.fillScreen(SCREEN_BG_COLOR);
-  displayCenteredMessageU8g2("Rapptor IOT v1.0\nStarting...", ST77XX_WHITE, u8g2_font_unifont_t_vietnamese2);
+  displayCenteredMessageU8g2("Rapptor IOT v1.2\nStarting...", ST77XX_WHITE, u8g2_font_unifont_t_vietnamese2);
 
   // Phát nhạc và nháy LED khởi động
   playStartupSound();
