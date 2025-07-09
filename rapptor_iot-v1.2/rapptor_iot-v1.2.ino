@@ -9,9 +9,9 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 #include <U8g2_for_Adafruit_GFX.h>
-#include "driver/dac.h" // Thư viện để sử dụng bộ chuyển đổi Digital-to-Analog cho âm thanh
+#include "driver/dac.h" 
 
-// --- PIN DEFINITIONS (THEO SƠ ĐỒ) ---
+// --- PIN DEFINITIONS ---
 #define TFT_SCLK 14
 #define TFT_MOSI 13 // Còn gọi là SDI
 #define TFT_MISO 12 // Còn gọi là SDO
@@ -20,15 +20,15 @@
 #define TFT_RST  -1
 #define TFT_BL   21  // TFT_LED trên sơ đồ
 
-// --- AUDIO PIN (THEO SƠ ĐỒ) ---
+// --- AUDIO PIN ---
 #define AUDIO_OUT_PIN DAC_CHANNEL_2 // Chân IO26 tương ứng với DAC Channel 2
 
-// --- RGB LED PINS (THEO SƠ ĐỒ) ---
+// --- RGB LED PINS ---
 #define LED_RED_PIN    4
 #define LED_GREEN_PIN  16
 #define LED_BLUE_PIN   17
 
-// --- MUSIC NOTES DEFINITION (PITCHES) - ĐÃ MỞ RỘNG ---
+// --- MUSIC NOTES DEFINITION ---
 #define REST      0
 #define NOTE_E4  330
 #define NOTE_G4  392
@@ -42,7 +42,7 @@
 #define NOTE_G5  784
 #define NOTE_A5  880
 
-// --- SUPER MARIO MELODY AND TEMPO - PHIÊN BẢN DÀI HƠN ---
+// --- SUPER MARIO MELODY AND TEMPO ---
 int melody[] = {
   NOTE_E5, NOTE_E5, REST, NOTE_E5, REST, NOTE_C5, NOTE_E5, NOTE_G5, REST, NOTE_G4, REST,
   NOTE_C5, REST, NOTE_G4, REST, NOTE_E4, REST,
@@ -274,17 +274,15 @@ void manageLed() {
   if (WiFi.status() == WL_CONNECTED) {
     int rssi = WiFi.RSSI();
 
-    // --- LOGIC MÀU ĐÃ ĐẢO NGƯỢC ---
-    // Tín hiệu mạnh nhất (>= -55dBm) -> Màu Đỏ
-    // Tín hiệu yếu nhất (< -75dBm)   -> Màu Xanh lá
+   
     if (rssi >= -55) {
-      setLedColor(255, 0, 0);   // Đỏ (Tín hiệu mạnh nhất)
+      setLedColor(255, 0, 0);   // Đỏ
     } else if (rssi >= -65) {
       setLedColor(255, 100, 0); // Cam
     } else if (rssi >= -75) {
       setLedColor(255, 255, 0); // Vàng
     } else {
-      setLedColor(0, 255, 0);   // Xanh lá (Tín hiệu yếu nhất)
+      setLedColor(0, 255, 0);   // Xanh lá
     }
 
   } else {
